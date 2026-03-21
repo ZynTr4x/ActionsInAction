@@ -18,4 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: "echo Var: ${{vars.PG_VAR}}"
-      - run: "echo Secret: ${{vars.PG}}"
+      - run: "echo Secret: ${{secrets.PG}}"
