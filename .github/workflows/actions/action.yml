@@ -1,0 +1,26 @@
+name: Check vars and secrets
+description: Checks repository variable and secret
+
+inputs:
+  pg_var:
+    description: Repository variable value
+    required: false
+  pg_secret:
+    description: Secret value
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Check variable
+      shell: bash
+      run: "echo var: ${{ inputs.pg_var }}"
+
+    - name: Check secret
+      shell: bash
+      run: |
+        if [ -n "${{ inputs.pg_secret }}" ]; then
+          echo "Secret exists"
+        else
+          echo "Secret missing"
+        fi
