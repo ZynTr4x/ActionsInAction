@@ -11,11 +11,20 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  PG: ${{ secrets.PG }}
+  PG_VAR: ${{ vars.PG_VAR }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   job-1:
     runs-on: ubuntu-latest
     steps:
-      - run: "echo Var: ${{vars.PG_VAR}}"
-      - run: "echo Secret: ${{secrets.PG}}"
+      - name: "Check for vars"
+        run: "echo Var: $PG_VAR"
+      - name: "Check for secrets"
+        run: "echo Secret: $PG"
+      
+
+  
