@@ -21,6 +21,7 @@ jobs:
         run: echo Hello, world!
 
       - name: Run other action
+        working-directory: ./.github
         uses: ./.github/actions/
         with: 
           pg_var: $PG_VAR
