@@ -17,7 +17,16 @@ jobs:
         id: test-runner
         run: echo "TEST_PERCENTAGE=100" >> "$GITHUB_OUTPUT"
 
+      - name: Pass Env Variable
+        id: smell-runner
+        run: echo "SMELL_PERCENTAGE=95" >> "$GITHUB_ENV"
+
       - name: Use Output from Test Runner
         run: |
           echo "Using output from previous step",
           echo "Output: ${{steps.test-runner.outputs.TEST_PERCENTAGE}}"
+
+      - name: Use Env from Test Runner
+        run: |
+          echo "Using env from previous step",
+          echo "Env: ${{env.SMELL_PERCENTAGE}}"
