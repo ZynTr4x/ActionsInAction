@@ -1,0 +1,32 @@
+name: Using js toolkit
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        uses: actions/github-script@v8
+        with:
+          script: |
+            await core.summary
+             .addHeading('Test Results')
+             .addTable([
+             [{data: 'File', header: true}, {data: 'Result', header: true}],
+             ['foo.js', 'Pass ✅'],
+             ['bar.js', 'Fail ❌'],
+             ['test.js', 'Pass ✅']
+             ])
+             .addLink('View staging deployment!', 'https://github.com')
+             .write()
