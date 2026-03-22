@@ -6,6 +6,10 @@ on:
 
   workflow_dispatch:
 
+env: 
+  PG_VAR: ${{vars.PG_VAR}}
+  PG_SECRET: ${{secrets.PG}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,3 +22,6 @@ jobs:
 
       - name: Run other action
         uses: ./github/workflows/blank.yml
+        with: 
+          pg_var: PG_VAR
+          pg_secret: PG_SECRET
