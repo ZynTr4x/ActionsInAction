@@ -1,0 +1,28 @@
+name: Custom Summary
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Write Custom Summary
+        run: |
+          echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
+          echo '### Love this feature! :medal_sports:' >> $GITHUB_STEP_SUMMARY
+          echo '<h1>Great feature!</h1>' >> $GITHUB_STEP_SUMMARY
