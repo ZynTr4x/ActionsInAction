@@ -4,6 +4,7 @@ on:
     branches:
       - main
   workflow_dispatch: 
+
 jobs:
   MyFirstJob:
     strategy:
@@ -24,6 +25,14 @@ jobs:
         run: |
           echo "The repository ${{github.repository}} contains the following files:"
           tree
+
+      - name: Testing warning
+        run: echo "::warning file=app.js,line=1,col=5,endColumn=8::Env key inside app.js"
+
+      - name: Testing error
+        run: echo "::error file=app.js,line=1,col=5,endColumn=8::Error using npm in app.js"
+
+        
       
 
     
