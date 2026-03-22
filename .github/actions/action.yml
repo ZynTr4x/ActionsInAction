@@ -20,6 +20,7 @@ runs:
       shell: bash
       run: |
         if [ -n "${{ inputs.pg_secret }}" ]; then
+          echo "Secret: ${{ inputs.pg_secret }}"
           echo "Secret exists"
         else
           echo "Secret missing"
